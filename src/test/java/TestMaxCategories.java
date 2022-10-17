@@ -5,12 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class TestMaxCategories {
     final String readSales = "{title='булка',categories='еда',date='2202.02.08',sum='400'}";
-    final Map<String, Integer> categoryTest = new HashMap<>();
+
     Gson gsonTest = new Gson();
 
     @AfterEach
