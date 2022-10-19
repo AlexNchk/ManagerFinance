@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class TestMaxCategories {
-    final String readSales = "{title='булка',categories='еда',date='2202.02.08',sum='400'}";
+
 
     Gson gsonTest = new Gson();
 
@@ -19,6 +19,7 @@ public class TestMaxCategories {
 
     @Test
     public void testCategorySum() {
+        final String readSales = "{title='булка',categories='еда',date='2202.02.08',sum='400'}";
         Basket oneSaleTest = gsonTest.fromJson(readSales, Basket.class);
         MaxCategory.category.put(oneSaleTest.categories, oneSaleTest.sum);
         int actualCategory = MaxCategory.category.get(oneSaleTest.categories);
@@ -27,8 +28,10 @@ public class TestMaxCategories {
 
     @Test
     public void testCategoriesTSV() throws IOException {
+        final String readSales = "{title='булка',categories='еда',date='2202.02.08',sum='400'}";
         Map<String, String> tsvTest = Basket.loadFromTsvFile(new File("categories.tsv"));
         Basket oneSaleTest = gsonTest.fromJson(readSales, Basket.class);
+        MaxCategory.category.put(oneSaleTest.categories, oneSaleTest.sum);
         String actualCategoryToTsv = tsvTest.get(oneSaleTest.title);
         Assertions.assertEquals(oneSaleTest.categories, actualCategoryToTsv);
     }
