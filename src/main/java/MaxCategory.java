@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MaxCategory {
-    protected static Map<String, Integer> category = new HashMap<>();
+    protected Map<String, Integer> category = new HashMap<>();
 
-    public static JSONObject maxCategory(BufferedReader in) throws IOException {
+    public JSONObject maxCategory(BufferedReader in) throws IOException {
         Gson gson = new Gson();
         String readSales = in.readLine();
         Basket oneSale = gson.fromJson(readSales, Basket.class);
@@ -22,7 +22,7 @@ public class MaxCategory {
         JSONObject jsonMaxSum = new JSONObject();
         jsonMaxSum.put("sum", maxFinSum);
         jsonMaxSum.put("categories", maxFinCategory);
-
         return jsonMaxSum;
     }
+
 }
