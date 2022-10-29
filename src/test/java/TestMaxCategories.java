@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestMaxCategories {
-    final String readSales = "{title='булка',categories='еда',date='2202.02.08',sum='400'}";
-    final Map<String, Integer> categoryTest = new HashMap<>();
+
+
     Gson gsonTest = new Gson();
 
     @AfterEach
@@ -20,16 +20,21 @@ public class TestMaxCategories {
 
     @Test
     public void testCategorySum() {
+        Map<String, Integer> category = new HashMap<>();
+        final String readSales = "{title='булка',categories='еда',date='2202.02.08',sum='400'}";
         Basket oneSaleTest = gsonTest.fromJson(readSales, Basket.class);
-        MaxCategory.category.put(oneSaleTest.categories, oneSaleTest.sum);
-        int actualCategory = MaxCategory.category.get(oneSaleTest.categories);
+        category.put(oneSaleTest.categories, oneSaleTest.sum);
+        int actualCategory = category.get(oneSaleTest.categories);
         Assertions.assertEquals(oneSaleTest.sum, actualCategory);
     }
 
     @Test
     public void testCategoriesTSV() throws IOException {
+        Map<String, Integer> category = new HashMap<>();
+        final String readSales = "{title='булка',categories='еда',date='2202.02.08',sum='400'}";
         Map<String, String> tsvTest = Basket.loadFromTsvFile(new File("categories.tsv"));
         Basket oneSaleTest = gsonTest.fromJson(readSales, Basket.class);
+        category.put(oneSaleTest.categories, oneSaleTest.sum);
         String actualCategoryToTsv = tsvTest.get(oneSaleTest.title);
         Assertions.assertEquals(oneSaleTest.categories, actualCategoryToTsv);
     }
