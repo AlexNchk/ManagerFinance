@@ -19,6 +19,7 @@ public class ClientSale {
                 String value = tsv.get(key);
                 if (gson.getTitle().equals(key)) {
                     gson.setCategories(value);
+                    break;
                 }
             }
             out.println(gson);
