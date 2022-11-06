@@ -10,10 +10,11 @@ import java.util.Map;
 
 public class MaxCategory {
     protected Map<String, Integer> category = new HashMap<>();
+    protected String readSales = null;
 
     public JSONObject maxCategory(BufferedReader in) throws IOException {
         Gson gson = new Gson();
-        String readSales = in.readLine();
+        readSales = in.readLine();
         Basket oneSale = gson.fromJson(readSales, Basket.class);
         category.put(oneSale.categories, oneSale.sum);
         String maxFinCategory = Collections.max(category.entrySet(),
